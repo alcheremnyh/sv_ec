@@ -1,2 +1,3 @@
 --CREATE EXTENSION IF NOT EXISTS pgcrypto;
 --select * from cashiers.register('cashier_main','8dy%rkszBl~?zCez','921e856518d0f32177a0dc06d837d2d6c6355a35fbc47ecd509d26ff88ce0295');
+--select * from cashiers.list;
