@@ -3,6 +3,7 @@ const path = require('path')
 const https = require("https")
 
 const adminRouter = require('./app/routes/admin.routes.js')
+const cashierRouter = require('./app/routes/cashier.routes.js')
 
 const cors = require('cors');
 
@@ -16,6 +17,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use('/admin', adminRouter)
+app.use('/cashier', cashierRouter)
 
 app.use(express.static(__dirname+"/app/public"))
 
