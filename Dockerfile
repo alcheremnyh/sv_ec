@@ -5,6 +5,6 @@ COPY package*.json ./
 USER node
 RUN npm install
 COPY --chown=node:node . .
-#EXPOSE 8434
+EXPOSE 8434/tcp
 
 CMD [ "node", "app.js" ]
