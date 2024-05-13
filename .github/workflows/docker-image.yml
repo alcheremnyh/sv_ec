@@ -1,0 +1,19 @@
+name: Docker Image CI-CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build -q . --file Dockerfile --tag sc_ec_image
+    - name: Stop the Docker container
+      run: docker stop sc_ec_image 2>/dev/null || true
+    - name: Run the Docker image
+      run: docker run --rm -d --name sc_ec_image -it sc_ec_image
