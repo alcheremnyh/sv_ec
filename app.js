@@ -29,8 +29,8 @@ if(HTTPS == 1) {
                 //cert: fs.readFileSync('/opt/nginx/nginx_secrets/live/api.dev.jadebuddha.io/fullchain.pem'),
                 //key: fs.readFileSync('/etc/letsencrypt/live/game.jadebuddha.io/privkey.pem'),
                 //cert: fs.readFileSync('/etc/letsencrypt/live/game.jadebuddha.io/fullchain.pem'),
-                key: fs.readFileSync('/etc/letsencrypt/live/jb.gamesinc.ru/privkey.pem'),
-                cert: fs.readFileSync('/etc/letsencrypt/live/jb.gamesinc.ru/fullchain.pem'),
+                key: fs.readFileSync('/etc/letsencrypt/live/ec.gamesinc.ru/privkey.pem'),
+                cert: fs.readFileSync('/etc/letsencrypt/live/ec.gamesinc.ru/fullchain.pem'),
             },
             app)
         .listen(PORT, () => {
