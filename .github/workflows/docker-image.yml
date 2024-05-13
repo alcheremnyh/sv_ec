@@ -16,4 +16,4 @@ jobs:
     - name: Stop the Docker container
       run: docker stop sc_ec_image 2>/dev/null || true
     - name: Run the Docker image
-      run: docker run --rm -d --name sc_ec_image -it sc_ec_image
+      run: docker run --rm -d --network host -p 0.0.0.0:8434:8434 --name sc_ec_image -it sc_ec_image
