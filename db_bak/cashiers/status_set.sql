@@ -10,7 +10,7 @@ DECLARE
 BEGIN
     SELECT al.id FROM admins.list al WHERE al.token = p_admin_token  AND al.is_active = true INTO v_admin_id;
 
-    IF v_admin_id = 1 THEN
+    IF v_admin_id > 0 THEN
 		UPDATE cashiers.list
 		SET is_active = p_active
 		WHERE id = p_id;

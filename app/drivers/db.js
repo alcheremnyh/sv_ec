@@ -136,5 +136,58 @@ class PGP {
 
         return data
     }
+
+    async player_login(login, password){
+        let data = await this.db.one('select * from players.login($1,$2);', [login, password])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return 0; 
+            })
+
+        console.log(data)
+        return data
+    }
+
+    async player_register(login, password, token){
+        let data = await this.db.one('select * from players.register($1,$2,$3);', [login, password, token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return 0; 
+            })
+
+        return data
+    }
+
+    async player_list_get(token){
+        let data = await this.db.any('select * from players.list_get($1);', [token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return 0; 
+            })
+
+        return data
+    }
+
+    async player_status_set(id, status, token){
+        let data = await this.db.one('select * from players.status_set($1, $2, $3);', [id, status, token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return 0; 
+            })
+
+        return data
+    }
 }
 module.exports = new PGP()
