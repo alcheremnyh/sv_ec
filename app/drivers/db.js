@@ -33,7 +33,7 @@ class PGP {
     }
 
     async admin_list_get(token){
-        let data = await this.db.one('select * from admins.list_get($1);', [token])
+        let data = await this.db.any('select * from admins.list_get($1);', [token])
             .then((data) => {
                 return data;
             })
