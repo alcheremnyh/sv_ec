@@ -53,7 +53,7 @@ class AdminController {
         const token = req.headers.authorization.replace('Bearer ','')
         
         const db = require('../drivers/db.js')
-        var result = await db.list_get(token)
+        var result = await db.admin_list_get(token)
 
         res.json(result)
     }
