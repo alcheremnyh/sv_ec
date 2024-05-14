@@ -4,5 +4,7 @@ const controller = require('../controllers/cashier.controller.js')
 
 router.post('/login', controller.login)
 router.post('/register', controller.register)
+router.get('/list', controller.list_get)
+router.post('/status-set', controller.status_set)
 
 module.exports = router

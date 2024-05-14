@@ -110,5 +110,31 @@ class PGP {
 
         return data
     }
+
+    async cashier_list_get(token){
+        let data = await this.db.any('select * from cashiers.list_get($1);', [token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return 0; 
+            })
+
+        return data
+    }
+
+    async cashier_status_set(id, status, token){
+        let data = await this.db.one('select * from cashiers.status_set($1, $2, $3);', [id, status, token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return 0; 
+            })
+
+        return data
+    }
 }
 module.exports = new PGP()
