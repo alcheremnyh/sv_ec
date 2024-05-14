@@ -57,6 +57,16 @@ class AdminController {
 
         res.json(result)
     }
+
+    async status_set(req, res){
+        const token = req.headers.authorization.replace('Bearer ','')
+        const {id, status} = req.body
+
+        const db = require('../drivers/db.js')
+        var result = await db.admin_status_set(id, status, token)
+
+        res.json(result)
+    }
 }
 
 module.exports = new AdminController()

@@ -21,5 +21,9 @@
 
 --select * from admins.register('admin_test','abc123!@#','df1578f8506ab47cf5b22285153ab6844351a327f7bf6212ab1f89f7a0fe31fa');
 
+--select * from admins.list_get('f9b5852c22dce565d6eabc6c0365aa70c68a35512585efb4ca5cbf6b9f351453');
 
-select * from cashiers.login('cashier_test','abc123!@#');
+
+--select * from cashiers.login('cashier_test','abc123!@#');
+
+select * from admins.status_set(2, false, 'f9b5852c22dce565d6eabc6c0365aa70c68a35512585efb4ca5cbf6b9f351453');

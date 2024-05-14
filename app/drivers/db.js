@@ -45,6 +45,19 @@ class PGP {
         return data
     }
 
+    async admin_status_set(id, status, token){
+        let data = await this.db.one('select * from admins.status_set($1, $2, $3);', [id, status, token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return 0; 
+            })
+
+        return data
+    }
+
     async rules_get(game_id, token){
         let data = await this.db.one('select * from admins.rules_get($1,$2);', [game_id,token])
             .then((data) => {
