@@ -26,4 +26,6 @@
 
 --select * from cashiers.login('cashier_test','abc123!@#');
 
-select * from admins.status_set(2, false, 'f9b5852c22dce565d6eabc6c0365aa70c68a35512585efb4ca5cbf6b9f351453');
+--select * from admins.status_set(2, false, 'f9b5852c22dce565d6eabc6c0365aa70c68a35512585efb4ca5cbf6b9f351453');
+
+select * from players.list;
