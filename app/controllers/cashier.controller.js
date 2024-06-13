@@ -36,12 +36,14 @@ class CashierController {
     }
 
     async info_get(req, res){
-        const token = req.headers.authorization.replace('Bearer ','')
-        
-        const db = require('../drivers/db.js')
-        var result = await db.cashier_info_get(token)
+        if(req.headers.authorization){
+            const token = req.headers.authorization.replace('Bearer ','')
+            
+            const db = require('../drivers/db.js')
+            var result = await db.cashier_info_get(token)
 
-        res.json(result)
+            res.json(result)
+        }
     }
 }
 module.exports = new CashierController()

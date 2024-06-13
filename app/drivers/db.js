@@ -138,7 +138,7 @@ class PGP {
     }
 
     async cashier_info_get(token){
-        let data = await this.db.one('select id,name,description, is_active from cashiers.list where token=$1;', [token])
+        let data = await this.db.one('select id, name, description, is_active from cashiers.list where token=$1;', [token])
             .then((data) => {
                 return data;
             })
