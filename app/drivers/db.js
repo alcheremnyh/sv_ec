@@ -137,6 +137,19 @@ class PGP {
         return data
     }
 
+    async cashier_info_get(token){
+        let data = await this.db.one('select id,name,description, is_active from cashiers.list where token=$1;', [token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return 0; 
+            })
+
+        return data
+    }
+
     async player_login(login, password){
         let data = await this.db.one('select * from players.login($1,$2);', [login, password])
             .then((data) => {
