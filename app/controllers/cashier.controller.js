@@ -36,13 +36,15 @@ class CashierController {
     }
 
     async info_get(req, res){
-        if(req.headers.authorization){
+        if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')
             
             const db = require('../drivers/db.js')
             var result = await db.cashier_info_get(token)
 
             res.json(result)
+        }else{
+            res.json(0)
         }
     }
 }
