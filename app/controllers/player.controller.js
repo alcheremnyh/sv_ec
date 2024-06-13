@@ -8,31 +8,43 @@ class PlayerController {
     }
 
     async register(req, res){
-        const token = req.headers.authorization.replace('Bearer ','')
-        const {login, password} = req.body
-        const db = require('../drivers/db.js')
-        var result = await db.player_register(login, password, token)
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {login, password} = req.body
+            const db = require('../drivers/db.js')
+            var result = await db.player_register(login, password, token)
 
-        res.json(result)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
     }
 
     async list_get(req, res){
-        const token = req.headers.authorization.replace('Bearer ','')
-        
-        const db = require('../drivers/db.js')
-        var result = await db.player_list_get(token)
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            
+            const db = require('../drivers/db.js')
+            var result = await db.player_list_get(token)
 
-        res.json(result)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
     }
 
     async status_set(req, res){
-        const token = req.headers.authorization.replace('Bearer ','')
-        const {id, status} = req.body
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {id, status} = req.body
 
-        const db = require('../drivers/db.js')
-        var result = await db.player_status_set(id, status, token)
+            const db = require('../drivers/db.js')
+            var result = await db.player_status_set(id, status, token)
 
-        res.json(result)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
     }
 }
 module.exports = new PlayerController()

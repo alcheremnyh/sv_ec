@@ -8,32 +8,44 @@ class AdminController {
     }
 
     async register(req, res){
-        const token = req.headers.authorization.replace('Bearer ','')
-        const {login, password} = req.body
-        const db = require('../drivers/db.js')
-        var result = await db.admin_register(login, password, token)
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {login, password} = req.body
+            const db = require('../drivers/db.js')
+            var result = await db.admin_register(login, password, token)
 
-        res.json(result)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
     }
 
     async rules_get(req, res){
-        const token = req.headers.authorization.replace('Bearer ','')
-        const {game_id} = req.query
-        
-        const db = require('../drivers/db.js')
-        var result = await db.rules_get(game_id, token)
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {game_id} = req.query
+            
+            const db = require('../drivers/db.js')
+            var result = await db.rules_get(game_id, token)
 
-        res.json(result)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
     }
 
     async rules_set(req, res){
-        const token = req.headers.authorization.replace('Bearer ','')
-        const {game_id, rtp, jackpot_limit, jackpot_percentage, min_win, max_win, name} = req.body
-        
-        const db = require('../drivers/db.js')
-        var result = await db.rules_set(game_id, token, rtp, jackpot_limit, jackpot_percentage, min_win, max_win, name)
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {game_id, rtp, jackpot_limit, jackpot_percentage, min_win, max_win, name} = req.body
+            
+            const db = require('../drivers/db.js')
+            var result = await db.rules_set(game_id, token, rtp, jackpot_limit, jackpot_percentage, min_win, max_win, name)
 
-        res.json(result)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
     }
 
     async gen_password(req, res) {
@@ -50,22 +62,30 @@ class AdminController {
     }
 
     async list_get(req, res){
-        const token = req.headers.authorization.replace('Bearer ','')
-        
-        const db = require('../drivers/db.js')
-        var result = await db.admin_list_get(token)
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            
+            const db = require('../drivers/db.js')
+            var result = await db.admin_list_get(token)
 
-        res.json(result)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
     }
 
     async status_set(req, res){
-        const token = req.headers.authorization.replace('Bearer ','')
-        const {id, status} = req.body
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {id, status} = req.body
 
-        const db = require('../drivers/db.js')
-        var result = await db.admin_status_set(id, status, token)
+            const db = require('../drivers/db.js')
+            var result = await db.admin_status_set(id, status, token)
 
-        res.json(result)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
     }
 }
 
