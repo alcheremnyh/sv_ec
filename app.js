@@ -17,7 +17,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use('/user', userRouter)
-app.use('/transaction', transactionRouter)
+//app.use('/transaction', transactionRouter)
 
 app.use(express.static(__dirname+"/app/public"))
 
