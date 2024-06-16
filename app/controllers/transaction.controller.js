@@ -29,9 +29,9 @@ class TransactionController {
     async set(req, res){
         if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')
-            const {to_user_id, operation_id, cash} = req.body
+            const {user_id, operation_id, cash} = req.body
             const db = require('../drivers/db.js')
-            var result = await db.transaction_set(to_user_id, operation_id, cash, token)
+            var result = await db.transaction_set(user_id, operation_id, cash, token)
             res.json(result)
         }else{
             res.json(0)
