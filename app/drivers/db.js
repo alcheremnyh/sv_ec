@@ -139,7 +139,7 @@ class PGP {
     }
 
     async generate_wd(withdrawal_id, token){
-        let data = await this.db.one('select * from transactions.request_wd($1,$2);', [withdrawal_id,token])
+        let data = await this.db.one('select * from transactions.generate_wd($1,$2);', [withdrawal_id,token])
             .then((data) => {
                 return data;
             })
