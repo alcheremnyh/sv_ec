@@ -112,6 +112,84 @@ class PGP {
         return data
     }
 
+    async game_balance(user_id, token){
+        let data = await this.db.one('select * from transactions.balance_player($1,$2);', [user_id,token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+    async transaction_set(to_user_id, operation_id, cash, token){
+        let data = await this.db.one('select * from transactions.set_main($1,$2,$3,$4);', [to_user_id,operation_id,cash,token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+    async generate_wd(withdrawal_id, token){
+        let data = await this.db.one('select * from transactions.request_wd($1,$2);', [withdrawal_id,token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+    async moderate_wd(withdrawal_id, is_approve, description, token){
+        let data = await this.db.one('select * from transactions.request_wd($1,$2,$3,$4);', [withdrawal_id,is_approve,description,token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+    async request_wd(cashier_id, cash, token){
+        let data = await this.db.one('select * from transactions.request_wd($1,$2,$3);', [cashier_id,cash,token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+    async withdrawal(code, token){
+        let data = await this.db.one('select * from transactions.withdrawal($1,$2);', [code,token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
 
 }
 module.exports = new PGP()

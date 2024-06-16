@@ -26,6 +26,65 @@ class TransactionController {
         }
     }
 
+    async set(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {to_user_id, operation_id, cash} = req.body
+            const db = require('../drivers/db.js')
+            var result = await db.transaction_set(to_user_id, operation_id, cash, token)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
+    async generate_wd(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {withdrawal_id} = req.body
+            const db = require('../drivers/db.js')
+            var result = await db.generate_wd(withdrawal_id, token)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
+    async moderate_wd(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {withdrawal_id, is_approve, description} = req.body
+            const db = require('../drivers/db.js')
+            var result = await db.moderate_wd(withdrawal_id, is_approve, description, token)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+    
+    async request_wd(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {ashier_id, cash} = req.body
+            const db = require('../drivers/db.js')
+            var result = await db.request_wd(cashier_id, cash, token)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
+    async withdrawal(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {code} = req.body
+            const db = require('../drivers/db.js')
+            var result = await db.withdrawal(code, token)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
 
 }
 
