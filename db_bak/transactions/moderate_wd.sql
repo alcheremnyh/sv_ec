@@ -17,7 +17,7 @@ DECLARE
 	v_wd_id BIGINT;
 	v_balance BIGINT;
 	v_result BIGINT;
-
+	v_status BIGINT;
 BEGIN
 	SELECT id, role, is_active FROM users.list WHERE token = p_token INTO v_admin_id, v_admin_role, v_admin_is_active;
 
@@ -44,15 +44,17 @@ BEGIN
 		IF v_balance - v_cash < 0  THEN
 			RAISE EXCEPTION '[E5] not enough money';
 		END IF;
+		v_status:=3;
 	ELSE
 		IF p_description = ''  THEN
 			RAISE EXCEPTION '[E6] need description';
 		END IF;
+		v_status:=2;
 	END IF;
 
 	UPDATE transactions.withdrawal
 		SET is_approved = p_is_approved, approver_id = v_admin_id, 
-			description = p_description, approved = now() WHERE id = p_withdrawal_id;
+			description = p_description, approved = now(), status=v_status WHERE id = p_withdrawal_id;
 	INSERT INTO transactions.game VALUES(default, v_user_id, 0, p_withdrawal_id, 3, now(), v_cash);
 
 	RETURN QUERY SELECT p_withdrawal_id;

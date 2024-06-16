@@ -56,7 +56,7 @@ BEGIN
 		RAISE EXCEPTION '[E8] not enough money';
 	END IF;
 	
-	INSERT INTO transactions.withdrawal VALUES(default, v_user_id, v_cashier_id, p_cash, now(), false, 0) RETURNING id INTO v_result;
+	INSERT INTO transactions.withdrawal VALUES(default, v_user_id, v_cashier_id, p_cash, now(), false, 0, null,'',0, 1) RETURNING id INTO v_result;
 
 	INSERT INTO transactions.game VALUES(default, v_user_id, 0, v_result, 2, now(), p_cash) RETURNING id INTO v_result;
 

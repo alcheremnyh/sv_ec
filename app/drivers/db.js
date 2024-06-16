@@ -152,7 +152,7 @@ class PGP {
     }
 
     async moderate_wd(withdrawal_id, is_approve, description, token){
-        let data = await this.db.one('select * from transactions.request_wd($1,$2,$3,$4);', [withdrawal_id,is_approve,description,token])
+        let data = await this.db.one('select * from transactions.moderate_wd($1,$2,$3,$4);', [withdrawal_id,is_approve,description,token])
             .then((data) => {
                 return data;
             })

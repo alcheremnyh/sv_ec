@@ -59,7 +59,7 @@ BEGIN
 	END IF;
 
 	UPDATE transactions.withdrawal
-		SET transaction_id = v_transaction_id
+		SET transaction_id = v_transaction_id, status=4
 		WHERE id = v_withdrawal_id;
 
 	RETURN QUERY SELECT v_transaction_id;
