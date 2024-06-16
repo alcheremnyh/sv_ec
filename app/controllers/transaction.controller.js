@@ -65,7 +65,7 @@ class TransactionController {
     async request_wd(req, res){
         if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')
-            const {ashier_id, cash} = req.body
+            const {cashier_id, cash} = req.body
             const db = require('../drivers/db.js')
             var result = await db.request_wd(cashier_id, cash, token)
             res.json(result)
