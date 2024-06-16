@@ -19,13 +19,14 @@ class PGP {
         return data
     }
 
-    async register(login, password, role, token){
-        let data = await this.db.one('select * from users.register($1,$2,$3,$4);', [login, password, role, token])
+    async register(login, password, name, role, token){
+        let data = await this.db.one('select * from users.register($1,$2,$3,$4,$5);', [login, password, name, role, token])
             .then((data) => {
-                return data;
+                return data
             })
             .catch((error) => {
                 console.log('ERROR:', error)
+                return {error: error}
                 return 0; 
             })
 

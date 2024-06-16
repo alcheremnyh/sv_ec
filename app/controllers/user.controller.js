@@ -10,9 +10,9 @@ class UserController {
     async register(req, res){
         if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')
-            const {login, password, role} = req.body
+            const {login, name, password, role} = req.body
             const db = require('../drivers/db.js')
-            var result = await db.register(login, password, role, token)
+            var result = await db.register(login, password, name, role, token)
 
             res.json(result)
         }else{
