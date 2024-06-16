@@ -12,8 +12,11 @@ DECLARE
 BEGIN
 	UPDATE users.list SET token=concat(md5(random()::text), md5(random()::text)), last_login=now() WHERE login = p_user_name AND password = crypt(p_user_password, password)
                                                              RETURNING users.list.token, users.list.role INTO v_token, v_role;
-
-	RETURN QUERY SELECT COALESCE(v_token, ''), COALESCE(v_role, 0);
+	IF(COALESCE(v_token, '') = '') THEN
+		RAISE EXCEPTION 'wrong login or password';
+	ELSE
+		RETURN QUERY SELECT COALESCE(v_token, ''), COALESCE(v_role, 0);
+	END IF;
 END;
 $BODY$
 LANGUAGE plpgsql VOLATILE;

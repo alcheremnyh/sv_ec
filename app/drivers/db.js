@@ -12,7 +12,7 @@ class PGP {
             })
             .catch((error) => {
                 console.log('ERROR:', error)
-                return {error: error}; 
+                return {error: "wrong login or password"}; 
             })
 
         console.log(data)

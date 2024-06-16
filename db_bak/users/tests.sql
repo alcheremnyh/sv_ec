@@ -1,4 +1,4 @@
---select * from users.login('admin_main', 'ip{^qey(H–qCTz0');
+--select * from users.login('admin_main1', 'ip{^qey(H–qCTz0');
 --select * from  users.list;
 
 --select * from users.list;
@@ -49,7 +49,7 @@
 --select * from transactions.balance_main(11, '679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
 --select * from transactions.balance_main(10, '7c53f9ac9cc2c3e1c10d9ea852dc5e158a8f2226fe3e32430419c1a0c86637ff');
 
---select * from transactions.balance_main_internal(12);
+--select * from transactions.balance_main_internal(13);
 
 --"admin_main" "679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154"
 --"admin_test" "32ea98a3e4984a6d7a547af2da6fe5906a324086b3e2ab219a65ce517d23c5b8"
@@ -64,13 +64,13 @@
 --select * from transactions.game;
 --select * from transactions.withdrawal;
 
---select * from transactions.balance_player(13,'d8b630576372c53282477349805293bb4438aa93fc18c8a00f770da66ca5bb9f');
+--select * from transactions.balance_player(13,'679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
 
 --select * from transactions.request_wd(12, 100, '38d2de23398de4ead28867a5181a3ab38013dbc34a1c591817d6383477f0a86d');
---select * from transactions.moderate_wd(2, true, '', '32ea98a3e4984a6d7a547af2da6fe5906a324086b3e2ab219a65ce517d23c5b8');
+--select * from transactions.moderate_wd(1, false, 'тест отмены', '32ea98a3e4984a6d7a547af2da6fe5906a324086b3e2ab219a65ce517d23c5b8');
 --select substring(md5(random()::text), 1, 8),md5(random()::text);
 
---select * from transactions.generate_wd(2, '38d2de23398de4ead28867a5181a3ab38013dbc34a1c591817d6383477f0a86d')
+--select * from transactions.generate_wd(1, '38d2de23398de4ead28867a5181a3ab38013dbc34a1c591817d6383477f0a86d')
 --"3431aeb3"
 
 --select * from transactions.withdrawal('3431aeb3', 'd8b630576372c53282477349805293bb4438aa93fc18c8a00f770da66ca5bb9f');
