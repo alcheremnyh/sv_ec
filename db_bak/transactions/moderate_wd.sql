@@ -21,7 +21,7 @@ DECLARE
 BEGIN
 	SELECT id, role, is_active FROM users.list WHERE token = p_token INTO v_admin_id, v_admin_role, v_admin_is_active;
 
-	IF v_admin_id = 0 THEN
+	IF COALESCE(v_admin_id, 0) = 0 THEN
 		RAISE EXCEPTION '[E1] not authorized';
 	END IF;
 
@@ -35,19 +35,23 @@ BEGIN
 
 	SELECT user_id_from, user_id_to, approver_id, cash FROM transactions.withdrawal WHERE id = p_withdrawal_id INTO v_user_id, v_cashier_id, v_approver_id, v_cash;
 
+	IF COALESCE(v_user_id, 0) = 0 THEN
+		RAISE EXCEPTION '[E4] operation not found';
+	END IF;
+
 	IF v_approver_id > 0 THEN
-		RAISE EXCEPTION '[E4] operation is closed';
+		RAISE EXCEPTION '[E5] operation is closed';
 	END IF;
 
 	IF p_is_approved = true THEN
 		SELECT transactions.balance_main_internal(v_cashier_id) INTO v_balance;
 		IF v_balance - v_cash < 0  THEN
-			RAISE EXCEPTION '[E5] not enough money';
+			RAISE EXCEPTION '[E6] not enough money';
 		END IF;
 		v_status:=3;
 	ELSE
 		IF p_description = ''  THEN
-			RAISE EXCEPTION '[E6] need description';
+			RAISE EXCEPTION '[E7] need description';
 		END IF;
 		v_status:=2;
 	END IF;
