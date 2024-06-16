@@ -8,7 +8,7 @@ DECLARE
     v_admin_id BIGINT;
 	v_admin_role BIGINT;
 	v_admin_is_active BOOL;
-	
+	v_user_id BIGINT;
 	v_approver_id BIGINT;
 	
 	v_cashier_id BIGINT;
@@ -33,7 +33,7 @@ BEGIN
 		RAISE EXCEPTION '[E3] wrong operation';
 	END IF;
 
-	SELECT user_id_to, approver_id, cash FROM transactions.withdrawal WHERE id = p_withdrawal_id INTO v_cashier_id, v_approver_id, v_cash;
+	SELECT user_id_from, user_id_to, approver_id, cash FROM transactions.withdrawal WHERE id = p_withdrawal_id INTO v_user_id, v_cashier_id, v_approver_id, v_cash;
 
 	IF v_approver_id > 0 THEN
 		RAISE EXCEPTION '[E4] operation is closed';
@@ -53,6 +53,7 @@ BEGIN
 	UPDATE transactions.withdrawal
 		SET is_approved = p_is_approved, approver_id = v_admin_id, 
 			description = p_description, approved = now() WHERE id = p_withdrawal_id;
+	INSERT INTO transactions.game VALUES(default, v_user_id, 0, p_withdrawal_id, 3, now(), v_cash);
 
 	RETURN QUERY SELECT p_withdrawal_id;
 END;

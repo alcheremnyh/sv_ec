@@ -17,7 +17,9 @@ DECLARE
 	v_token TEXT;
 BEGIN
 	SELECT ul.id, ul.role FROM users.list ul WHERE ul.token = p_token INTO v_admin_id, v_role;
-
+	IF p_role < 1 OR p_role > 5 THEN
+		RAISE EXCEPTION 'wrong role';
+	END IF;
     IF v_role = 1 OR v_role > p_role THEN
 		INSERT INTO users.list VALUES(default, p_login, p_password, p_name, p_role, true,
     			concat(md5(random()::text), md5(random()::text)), now(), null, v_admin_id) RETURNING token INTO v_token;

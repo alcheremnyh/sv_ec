@@ -4,10 +4,10 @@ class PGP {
         this.db = this.pgp('postgres://ecus:ecpwd@127.0.0.1:5432/ecdb')
     }
 
-    async admin_login(login, password){
-        let data = await this.db.one('select * from admins.login($1,$2);', [login, password])
+    async login(login, password){
+        let data = await this.db.one('select * from users.login($1,$2);', [login, password])
             .then((data) => {
-                console.log('DATA:', data.token)
+                console.log('DATA:', data.token, data.role)
                 return data;
             })
             .catch((error) => {
@@ -19,8 +19,8 @@ class PGP {
         return data
     }
 
-    async admin_register(login, password, token){
-        let data = await this.db.one('select * from admins.register($1,$2,$3);', [login, password, token])
+    async register(login, password, role, token){
+        let data = await this.db.one('select * from users.register($1,$2,$3,$4);', [login, password, role, token])
             .then((data) => {
                 return data;
             })
@@ -32,7 +32,7 @@ class PGP {
         return data
     }
 
-    async admin_list_get(token){
+    async list_get(token){
         let data = await this.db.any('select * from admins.list_get($1);', [token])
             .then((data) => {
                 return data;
@@ -45,8 +45,8 @@ class PGP {
         return data
     }
 
-    async admin_status_set(id, status, token){
-        let data = await this.db.one('select * from admins.status_set($1, $2, $3);', [id, status, token])
+    async status_set(id, status, token, description){
+        let data = await this.db.one('select * from users.status_set($1, $2, $3, $4);', [id, status, token, description])
             .then((data) => {
                 return data;
             })
@@ -59,7 +59,7 @@ class PGP {
     }
 
     async rules_get(game_id, token){
-        let data = await this.db.one('select * from admins.rules_get($1,$2);', [game_id,token])
+        let data = await this.db.one('select * from users.rules_get($1,$2);', [game_id,token])
             .then((data) => {
                 return data;
             })
@@ -72,7 +72,7 @@ class PGP {
     }
 
     async rules_set(game_id, token, rtp, j_limit, j_p, min, max, name){
-        let data = await this.db.one('select * from admins.rules_set($1,$2,$3,$4,$5,$6,$7,$8);', [game_id,token,rtp,j_limit,j_p,min,max,name])
+        let data = await this.db.one('select * from users.rules_set($1,$2,$3,$4,$5,$6,$7,$8);', [game_id,token,rtp,j_limit,j_p,min,max,name])
             .then((data) => {
                 return data;
             })
@@ -84,123 +84,5 @@ class PGP {
         return data
     }
 
-    async cashier_login(login, password){
-        let data = await this.db.one('select * from cashiers.login($1,$2);', [login, password])
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log('ERROR:', error)
-                return 0; 
-            })
-
-        console.log(data)
-        return data
-    }
-
-    async cashier_register(login, password, token){
-        let data = await this.db.one('select * from cashiers.register($1,$2,$3);', [login, password, token])
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log('ERROR:', error)
-                return 0; 
-            })
-
-        return data
-    }
-
-    async cashier_list_get(token){
-        let data = await this.db.any('select * from cashiers.list_get($1);', [token])
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log('ERROR:', error)
-                return 0; 
-            })
-
-        return data
-    }
-
-    async cashier_status_set(id, status, token){
-        let data = await this.db.one('select * from cashiers.status_set($1, $2, $3);', [id, status, token])
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log('ERROR:', error)
-                return 0; 
-            })
-
-        return data
-    }
-
-    async cashier_info_get(token){
-        let data = await this.db.one('select id, name, description, is_active from cashiers.list where token=$1;', [token])
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log('ERROR:', error)
-                return 0; 
-            })
-
-        return data
-    }
-
-    async player_login(login, password){
-        let data = await this.db.one('select * from players.login($1,$2);', [login, password])
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log('ERROR:', error)
-                return 0; 
-            })
-
-        console.log(data)
-        return data
-    }
-
-    async player_register(login, password, token){
-        let data = await this.db.one('select * from players.register($1,$2,$3);', [login, password, token])
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log('ERROR:', error)
-                return 0; 
-            })
-
-        return data
-    }
-
-    async player_list_get(token){
-        let data = await this.db.any('select * from players.list_get($1);', [token])
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log('ERROR:', error)
-                return 0; 
-            })
-
-        return data
-    }
-
-    async player_status_set(id, status, token){
-        let data = await this.db.one('select * from players.status_set($1, $2, $3);', [id, status, token])
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.log('ERROR:', error)
-                return 0; 
-            })
-
-        return data
-    }
 }
 module.exports = new PGP()

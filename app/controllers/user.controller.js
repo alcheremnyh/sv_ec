@@ -1,8 +1,8 @@
-class AdminController {
+class UserController {
     async login(req, res){
         const {login, password} = req.body
         const db = require('../drivers/db.js')
-        var result = await db.admin_login(login, password)
+        var result = await db.login(login, password)
 
         res.json(result)
     }
@@ -10,9 +10,9 @@ class AdminController {
     async register(req, res){
         if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')
-            const {login, password} = req.body
+            const {login, password, role} = req.body
             const db = require('../drivers/db.js')
-            var result = await db.admin_register(login, password, token)
+            var result = await db.register(login, password, role, token)
 
             res.json(result)
         }else{
@@ -77,10 +77,10 @@ class AdminController {
     async status_set(req, res){
         if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')
-            const {id, status} = req.body
+            const {id, status, description} = req.body
 
             const db = require('../drivers/db.js')
-            var result = await db.admin_status_set(id, status, token)
+            var result = await db.status_set(id, status, token, description)
 
             res.json(result)
         }else{
@@ -89,4 +89,4 @@ class AdminController {
     }
 }
 
-module.exports = new AdminController()
+module.exports = new UserController()
