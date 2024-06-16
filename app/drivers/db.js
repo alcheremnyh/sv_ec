@@ -190,6 +190,19 @@ class PGP {
         return data
     }
 
+    async list_wd(token){
+        let data = await this.db.any('select * from transactions.list_wd($1);', [token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
 
 }
 module.exports = new PGP()

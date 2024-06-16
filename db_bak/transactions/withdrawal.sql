@@ -22,7 +22,7 @@ DECLARE
 BEGIN
 	SELECT id, role, is_active FROM users.list WHERE token = p_token INTO v_user_id, v_user_role, v_user_is_active;
 
-	IF v_user_id = 0 THEN
+	IF COALESCE(v_user_id, 0) = 0 THEN
 		RAISE EXCEPTION '[E1] not authorized';
 	END IF;
 

@@ -86,6 +86,17 @@ class TransactionController {
         }
     }
 
+    async list_wd(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const db = require('../drivers/db.js')
+            var result = await db.list_wd(token)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
 }
 
 module.exports = new TransactionController()

@@ -76,4 +76,6 @@
 
 --select * from transactions.withdrawal('3431aeb3', 'd8b630576372c53282477349805293bb4438aa93fc18c8a00f770da66ca5bb9f');
 
-select * from  users.list_get('679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154', 0);
+--select * from  users.list_get('679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154', 0);
+
+select * from  transactions.list_wd('679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
