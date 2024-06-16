@@ -62,7 +62,7 @@ BEGIN
 	
 	IF p_operation_id = 2 AND v_user_role_to = 5 THEN
 		INSERT INTO transactions.list VALUES(default, v_user_id_to, v_user_id_from, p_operation_id, p_cash, now()) RETURNING id INTO v_result;
-		INSERT INTO transactions.game VALUES(default, v_user_id_to, v_result, 1, 0, now(), p_cash);
+		INSERT INTO transactions.game VALUES(default, v_user_id_to, v_result, 0, 1, now(), p_cash);
 	ELSE
 		IF p_operation_id = 1 THEN
 			SELECT balance FROM transactions.balance_main_internal(v_user_id_to) INTO v_balance;
