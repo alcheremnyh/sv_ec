@@ -20,7 +20,10 @@ BEGIN
 	IF p_role < 1 OR p_role > 5 THEN
 		RAISE EXCEPTION 'wrong role';
 	END IF;
-    IF v_role = 1 OR v_role > p_role THEN
+    IF v_role = 1 OR v_role < p_role THEN
+		IF v_role = 3 THEN
+	        RAISE EXCEPTION 'not enough rights';
+		END IF;
 		INSERT INTO users.list VALUES(default, p_login, p_password, p_name, p_role, true,
     			concat(md5(random()::text), md5(random()::text)), now(), null, v_admin_id) RETURNING token INTO v_token;
 		RETURN QUERY SELECT p_login, p_password, p_role;

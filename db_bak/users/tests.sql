@@ -13,6 +13,7 @@
 --select * from users.register('cashier_test', 'passpass', 'Тестовый Кассир', 4, '679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
 --select * from users.register('player_test', 'passpass', 'Тестовый Игрок', 5, '679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
 
+--select * from users.register('admin_test1-1', 'passpass', 'Тестовый админ 2', 2, '679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
 
 --delete from users.list where id>1;
 

@@ -39,7 +39,7 @@ class PGP {
             })
             .catch((error) => {
                 console.log('ERROR:', error)
-                return 0; 
+                return {error: error.message}
             })
 
         return data
@@ -52,7 +52,7 @@ class PGP {
             })
             .catch((error) => {
                 console.log('ERROR:', error)
-                return 0; 
+                return {error: error.message}
             })
 
         return data
@@ -65,7 +65,7 @@ class PGP {
             })
             .catch((error) => {
                 console.log('ERROR:', error)
-                return 0; 
+                return {error: error.message} 
             })
 
         return data
@@ -78,7 +78,7 @@ class PGP {
             })
             .catch((error) => {
                 console.log('ERROR:', error)
-                return 0; 
+                return {error: error.message}
             })
 
         return data
