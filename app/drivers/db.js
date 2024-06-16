@@ -100,7 +100,7 @@ class PGP {
     }
 
     async game_balance(user_id, token){
-        let data = await this.db.one('select * from transactions.balance_main($1,$2);', [user_id,token])
+        let data = await this.db.one('select * from transactions.balance_player($1,$2);', [user_id,token])
             .then((data) => {
                 return data;
             })
