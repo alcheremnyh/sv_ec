@@ -84,5 +84,34 @@ class PGP {
         return data
     }
 
+    //////////////////////////////////////////////////////////////////////////
+
+    async balance(user_id, token){
+        let data = await this.db.one('select * from transactions.balance_main($1,$2);', [user_id,token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+    async game_balance(user_id, token){
+        let data = await this.db.one('select * from transactions.balance_main($1,$2);', [user_id,token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+
 }
 module.exports = new PGP()

@@ -3,6 +3,7 @@ const path = require('path')
 const https = require("https")
 
 const userRouter = require('./app/routes/user.routes.js')
+const userTransaction = require('./app/routes/transaction.routes.js')
 
 const cors = require('cors');
 
@@ -16,6 +17,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use('/user', userRouter)
+app.use('/transaction', userTransaction)
 
 app.use(express.static(__dirname+"/app/public"))
 
