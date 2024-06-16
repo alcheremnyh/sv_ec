@@ -31,7 +31,7 @@
 
 --select * from transactions.set_main(1, 4, 500, '679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
 --select * from transactions.set_main(11, 2, 1000, '679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
---select * from transactions.set_main(12, 1, 100, '7c53f9ac9cc2c3e1c10d9ea852dc5e158a8f2226fe3e32430419c1a0c86637ff');
+--select * from transactions.set_main(12, 2, 1000, '7c53f9ac9cc2c3e1c10d9ea852dc5e158a8f2226fe3e32430419c1a0c86637ff');
 
 --select * from transactions.set_main(13, 2, 250, 'd8b630576372c53282477349805293bb4438aa93fc18c8a00f770da66ca5bb9f');
 
@@ -45,6 +45,11 @@
 
 --select sum(cash) from transactions.list ;
 
-select * from transactions.balance_main(1, '2f3806b81b1cbd9bf072e25b06bbc3703091dc181d341adba84fb16a9c62673e');
+select * from transactions.balance_main(12, '2f3806b81b1cbd9bf072e25b06bbc3703091dc181d341adba84fb16a9c62673e');
+select * from transactions.balance_main(11, '679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
+select * from transactions.balance_main(10, '7c53f9ac9cc2c3e1c10d9ea852dc5e158a8f2226fe3e32430419c1a0c86637ff');
+
+select * from transactions.balance_main_internal(12);
+
 
 

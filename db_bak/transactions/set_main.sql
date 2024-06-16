@@ -12,6 +12,7 @@ DECLARE
 	v_user_role_to BIGINT;
 	v_is_active BOOL;
 	v_result BIGINT;
+	v_balance BIGINT;
 BEGIN
 	IF p_operation_id < 1 OR p_operation_id > 5 THEN
 		RAISE EXCEPTION 'wrong operation';
@@ -64,9 +65,19 @@ BEGIN
 		INSERT INTO transactions.game VALUES(default, v_user_id_to, v_result, 1, 0, now(), p_cash);
 	ELSE
 		IF p_operation_id = 1 THEN
-			INSERT INTO transactions.list VALUES(default, v_user_id_to, v_user_id_from, p_operation_id, p_cash, now()) RETURNING id INTO v_result;	
+			SELECT balance FROM transactions.balance_main_internal(v_user_id_to) INTO v_balance;
+			IF v_balance >= p_cash THEN
+				INSERT INTO transactions.list VALUES(default, v_user_id_to, v_user_id_from, p_operation_id, p_cash, now()) RETURNING id INTO v_result;
+			ELSE
+				RAISE EXCEPTION 'not enough money';
+			END IF;
 		ELSE
-		 	INSERT INTO transactions.list VALUES(default, v_user_id_from, v_user_id_to, p_operation_id, p_cash, now()) RETURNING id INTO v_result;
+			SELECT balance FROM transactions.balance_main_internal(v_user_id_from) INTO v_balance;
+		 	IF v_balance >= p_cash THEN
+				INSERT INTO transactions.list VALUES(default, v_user_id_from, v_user_id_to, p_operation_id, p_cash, now()) RETURNING id INTO v_result;
+			ELSE
+				RAISE EXCEPTION 'not enough money';
+			END IF;
 		END IF;
 	END IF;
 	RETURN QUERY SELECT v_result;
