@@ -6,10 +6,10 @@ router.post('/balance', controller.balance)
 router.post('/game-balance', controller.game_balance)
 
 router.post('/set', controller.set)
-router.post('/generate_wd', controller.generate_wd)
-router.post('/moderate_wd', controller.moderate_wd)
-router.post('/request_wd', controller.request_wd)
-router.post('/list_wd', controller.list_wd)
+router.post('/generate-wd', controller.generate_wd)
+router.post('/moderate-wd', controller.moderate_wd)
+router.post('/request-wd', controller.request_wd)
+router.post('/list-wd', controller.list_wd)
 router.post('/withdrawal', controller.withdrawal)
 
 module.exports = router
