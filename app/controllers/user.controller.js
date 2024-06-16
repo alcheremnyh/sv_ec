@@ -64,9 +64,9 @@ class UserController {
     async list_get(req, res){
         if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')
-            
+            const {filter_role} = req.body
             const db = require('../drivers/db.js')
-            var result = await db.admin_list_get(token)
+            var result = await db.list_get(token, filter_role)
 
             res.json(result)
         }else{

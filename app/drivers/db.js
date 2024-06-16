@@ -32,8 +32,8 @@ class PGP {
         return data
     }
 
-    async list_get(token){
-        let data = await this.db.any('select * from admins.list_get($1);', [token])
+    async list_get(token,filter_role){
+        let data = await this.db.any('select * from users.list_get($1,$2);', [token,filter_role])
             .then((data) => {
                 return data;
             })
