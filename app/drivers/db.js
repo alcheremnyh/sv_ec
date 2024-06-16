@@ -12,7 +12,7 @@ class PGP {
             })
             .catch((error) => {
                 console.log('ERROR:', error)
-                return 0; 
+                return {error: error}; 
             })
 
         console.log(data)
