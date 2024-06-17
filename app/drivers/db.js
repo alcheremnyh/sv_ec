@@ -85,7 +85,7 @@ class PGP {
     }
 
     async user_info_get(token){
-        let data = await this.db.one('select id, login, name, role, is_active from users.list where token=$1;', [token])
+        let data = await this.db.one('select * from users.info($1);', [token])
             .then((data) => {
                 return data;
             })

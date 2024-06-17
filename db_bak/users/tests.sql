@@ -77,5 +77,7 @@
 --select * from transactions.withdrawal('3431aeb3', 'd8b630576372c53282477349805293bb4438aa93fc18c8a00f770da66ca5bb9f');
 
 --select * from  users.list_get('679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154', 0);
-
-select * from  transactions.list_wd('38d2de23398de4ead28867a5181a3ab38013dbc34a1c591817d6383477f0a86d');
+--select id, login, name, role, is_active from users.list where token='d8b630576372c53282477349805293bb4438aa93fc18c8a00f770da66ca5bb9f';
+--select * from  transactions.list_wd('38d2de23398de4ead28867a5181a3ab38013dbc34a1c591817d6383477f0a86d');
+--SELECT transactions.balance_main_internal(1);
+select * from users.info('679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154')
