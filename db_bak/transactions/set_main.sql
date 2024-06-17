@@ -24,7 +24,7 @@ BEGIN
 	
 	SELECT id, role FROM users.list WHERE token = p_token  AND is_active = true INTO v_user_id_from, v_user_role_from;
 	
-	IF v_user_id_from = 0 THEN
+	IF COALESCE(v_user_id_from, 0) = 0 THEN
 		RAISE EXCEPTION 'not authorized';
 	END IF;
 

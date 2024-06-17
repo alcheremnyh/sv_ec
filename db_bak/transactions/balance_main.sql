@@ -21,7 +21,7 @@ DECLARE
 BEGIN
 	SELECT id, role FROM users.list WHERE token = p_token  AND is_active = true INTO v_user_id, v_role;
 	
-	IF v_user_id = 0 THEN
+	IF COALESCE(v_user_id, 0) = 0 THEN
 		RAISE EXCEPTION '[E1]not authorized';
 	END IF;
 	
@@ -35,7 +35,7 @@ BEGIN
 
 	SELECT id, role FROM users.list WHERE id = p_user_id  AND is_active = true INTO v_target_user_id, v_user_role;
 
-	IF v_target_user_id = 0 THEN
+	IF COALESCE(v_target_user_id, 0) = 0 THEN
 		RAISE EXCEPTION '[E4]this user blocked';
 	END IF;
 	
