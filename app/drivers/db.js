@@ -84,6 +84,19 @@ class PGP {
         return data
     }
 
+    async user_info_get(token){
+        let data = await this.db.one('select id, login, name, role, is_active from user.list where token=$1;', [token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
     //////////////////////////////////////////////////////////////////////////
 
     async balance(user_id, token){
@@ -202,7 +215,5 @@ class PGP {
 
         return data
     }
-
-
 }
 module.exports = new PGP()
