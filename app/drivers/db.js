@@ -97,6 +97,32 @@ class PGP {
         return data
     }
 
+    async shift_start(token){
+        let data = await this.db.one('select * from users.shift_start($1);', [token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message} 
+            })
+
+        return data
+    }
+
+    async shift_end(token){
+        let data = await this.db.one('select * from users.shift_end($1);', [token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message} 
+            })
+
+        return data
+    }
+
     //////////////////////////////////////////////////////////////////////////
 
     async balance(user_id, token){

@@ -100,6 +100,33 @@ class UserController {
             res.json(0)
         }
     }
+
+    async shift_start(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            
+            const db = require('../drivers/db.js')
+            var result = await db.shift_start(token)
+
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
+    async shift_end(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            
+            const db = require('../drivers/db.js')
+            var result = await db.shift_end(token)
+
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
 }
 
 module.exports = new UserController()

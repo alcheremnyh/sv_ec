@@ -11,4 +11,7 @@ router.get('/list', controller.list_get)
 router.post('/status-set', controller.status_set)
 router.get('/info', controller.info_get)
 
+router.post('/shift-start', controller.shift_start)
+router.post('/shift-end', controller.shift_end)
+
 module.exports = router
