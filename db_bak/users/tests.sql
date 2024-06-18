@@ -1,4 +1,4 @@
---select * from users.login('admin_main1', 'ip{^qey(H–qCTz0');
+--select * from users.login('cashier_test', 'passpass');
 --select * from  users.list;
 
 --select * from users.list;
@@ -64,7 +64,7 @@
 --select * from transactions.list;
 --select * from transactions.game;
 --select * from transactions.withdrawal;
-
+select * from transactions.list;
 --select * from transactions.balance_player(13,'679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
 
 --select * from transactions.request_wd(12, 100, '38d2de23398de4ead28867a5181a3ab38013dbc34a1c591817d6383477f0a86d');
@@ -80,4 +80,14 @@
 --select id, login, name, role, is_active from users.list where token='d8b630576372c53282477349805293bb4438aa93fc18c8a00f770da66ca5bb9f';
 --select * from  transactions.list_wd('38d2de23398de4ead28867a5181a3ab38013dbc34a1c591817d6383477f0a86d');
 --SELECT transactions.balance_main_internal(1);
-select * from users.info('679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154')
+--select * from users.info('4c11fe888cd37c9976ae2644d52018ac540f9d3178a38d3787cc2e859590a54a')
+
+select * from users.shifts;
+
+select * from users.shift_start('362880509427a6d6f05ac42a23881583acce8bb7376e4396798dd17a8d14c04f');
+
+select * from users.shift_end('362880509427a6d6f05ac42a23881583acce8bb7376e4396798dd17a8d14c04f');
+
+SELECT us.id FROM users.shifts us WHERE us.user_id = 12 AND us.complete=false
+
+select * from transactions.get_transactions('24b448e68e05e136c894503dd52db5ab2c21688d0d448cf497b8cd99da1b1466');
