@@ -38,6 +38,17 @@ class TransactionController {
         }
     }
 
+    async get(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const db = require('../drivers/db.js')
+            var result = await db.transaction_get(token)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
     async generate_wd(req, res){
         if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')

@@ -11,5 +11,6 @@ router.post('/moderate-wd', controller.moderate_wd)
 router.post('/request-wd', controller.request_wd)
 router.post('/list-wd', controller.list_wd)
 router.post('/withdrawal', controller.withdrawal)
+router.get('/get', controller.get)
 
 module.exports = router

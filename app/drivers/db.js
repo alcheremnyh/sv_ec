@@ -177,6 +177,19 @@ class PGP {
         return data
     }
 
+    async transaction_get(token){
+        let data = await this.db.any('select * from transactions.get_transactions($1);', [token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
     async generate_wd(withdrawal_id, token){
         let data = await this.db.one('select * from transactions.generate_wd($1,$2);', [withdrawal_id,token])
             .then((data) => {
