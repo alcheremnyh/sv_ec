@@ -191,7 +191,7 @@ class PGP {
     }
 
     async transaction_get_one(token, id){
-        let data = await this.db.any('select * from transactions.get_transaction($1,$2);', [token, id])
+        let data = await this.db.one('select * from transactions.get_transaction($1,$2);', [token, id])
             .then((data) => {
                 return data;
             })
@@ -204,7 +204,7 @@ class PGP {
     }
 
     async transaction_cancel(token, id){
-        let data = await this.db.any('select * from transactions.cancel($1,$2);', [token, id])
+        let data = await this.db.one('select * from transactions.cancel($1,$2);', [token, id])
             .then((data) => {
                 return data;
             })
