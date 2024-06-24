@@ -49,6 +49,30 @@ class TransactionController {
         }
     }
 
+    async get_transaction(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {id} = req.body
+            const db = require('../drivers/db.js')
+            var result = await db.transaction_get_one(token, id)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
+    async cancel(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {id} = req.body
+            const db = require('../drivers/db.js')
+            var result = await db.transaction_cancel(token, id)
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
     async generate_wd(req, res){
         if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')

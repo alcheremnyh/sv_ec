@@ -82,12 +82,12 @@ select * from transactions.list;
 --SELECT transactions.balance_main_internal(1);
 --select * from users.info('4c11fe888cd37c9976ae2644d52018ac540f9d3178a38d3787cc2e859590a54a')
 
-select * from users.shifts;
+--select * from users.shifts;
 
-select * from users.shift_start('362880509427a6d6f05ac42a23881583acce8bb7376e4396798dd17a8d14c04f');
+--select * from users.shift_start('362880509427a6d6f05ac42a23881583acce8bb7376e4396798dd17a8d14c04f');
 
-select * from users.shift_end('362880509427a6d6f05ac42a23881583acce8bb7376e4396798dd17a8d14c04f');
+--select * from users.shift_end('362880509427a6d6f05ac42a23881583acce8bb7376e4396798dd17a8d14c04f');
 
-SELECT us.id FROM users.shifts us WHERE us.user_id = 12 AND us.complete=false
+--SELECT us.id FROM users.shifts us WHERE us.user_id = 12 AND us.complete=false
 
-select * from transactions.get_transactions('24b448e68e05e136c894503dd52db5ab2c21688d0d448cf497b8cd99da1b1466');
+select * from transactions.get_transaction('4ad86cbe6010ec54410772a761ddd3eb601b0265528c7054268b80604325df6d', 14);

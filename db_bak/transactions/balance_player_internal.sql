@@ -13,7 +13,7 @@ DECLARE
 	v_operation_b2 BIGINT;
 	v_result BIGINT;
 BEGIN
-	select SUM(cash) from transactions.game where user_id = p_user_id AND operation_id = 1 INTO v_operation_1;
+	select SUM(tg.cash) from transactions.game tg join transactions.list tl on tl.id=tg.transaction_id and tl.is_complete = true where tg.user_id = p_user_id AND tg.operation_id = 1 INTO v_operation_1;
 	select SUM(cash) from transactions.game where user_id = p_user_id AND operation_id = 2 INTO v_operation_2;
 	select SUM(cash) from transactions.game where user_id = p_user_id AND operation_id = 3 INTO v_operation_3;
 	select SUM(cash) from transactions.bids where user_id = p_user_id AND operation_id = 1 INTO v_operation_b1;

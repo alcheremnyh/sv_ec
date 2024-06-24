@@ -12,5 +12,7 @@ router.post('/request-wd', controller.request_wd)
 router.post('/list-wd', controller.list_wd)
 router.post('/withdrawal', controller.withdrawal)
 router.get('/get', controller.get)
+router.post('/get_transaction', controller.get_transaction)
+router.post('/cancel', controller.cancel)
 
 module.exports = router
