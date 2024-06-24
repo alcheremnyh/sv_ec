@@ -90,4 +90,5 @@ select * from transactions.list;
 
 --SELECT us.id FROM users.shifts us WHERE us.user_id = 12 AND us.complete=false
 
-select * from transactions.get_transaction('4ad86cbe6010ec54410772a761ddd3eb601b0265528c7054268b80604325df6d', 14);
+--select * from transactions.get_transaction('4ad86cbe6010ec54410772a761ddd3eb601b0265528c7054268b80604325df6d', 30);
+select * from transactions.cancel('4ad86cbe6010ec54410772a761ddd3eb601b0265528c7054268b80604325df6d', 30);
