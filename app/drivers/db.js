@@ -190,6 +190,19 @@ class PGP {
         return data
     }
 
+    async transaction_get_custom(token, id){
+        let data = await this.db.any('select * from transactions.get_transactions_custom($1, $2);', [id, token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
     async transaction_get_one(token, id){
         let data = await this.db.one('select * from transactions.get_transaction($1,$2);', [token, id])
             .then((data) => {
