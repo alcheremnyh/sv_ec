@@ -1,5 +1,5 @@
---DROP FUNCTION transactions.get_transactions(text)
-CREATE OR REPLACE FUNCTION transactions.get_transactions(p_token text)
+--DROP FUNCTION transactions.get_transactions_custom(BIGINT, text)
+CREATE OR REPLACE FUNCTION transactions.get_transactions_custom(p_user_id BIGINT, p_token text)
     RETURNS TABLE(
 		id BIGINT,
 		user_id_from BIGINT,
@@ -14,11 +14,13 @@ DECLARE
 	v_id BIGINT;
 	v_user_id BIGINT;
 	v_role BIGINT;
+	v_role_user BIGINT;
 	v_token TEXT;
 	v_created TIMESTAMP WITH TIME ZONE;
 BEGIN
 	SELECT ul.id, ul.role FROM users.list ul WHERE ul.token = p_token INTO v_user_id, v_role;
-	IF v_role = 4 THEN
+	SELECT ul.role FROM users.list ul WHERE ul.id = p_user_id INTO v_role_user;
+	IF v_role = 1 or v_user_id < v_role_user or p_user_id=v_user_id THEN
 		select us.start from users.shifts us where us.user_id = v_user_id and us.complete = true ORDER BY us.id DESC LIMIT 1 INTO v_created;
 		RETURN QUERY SELECT * FROM transactions.list tl WHERE (tl.user_id_from = v_user_id OR tl.user_id_to = v_user_id) AND tl.created>v_created ORDER BY tl.id DESC;
 	ELSE

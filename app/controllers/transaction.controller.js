@@ -52,9 +52,9 @@ class TransactionController {
     async get_custom(req, res){
         if(typeof req.headers.authorization !== "undefined"){
             const token = req.headers.authorization.replace('Bearer ','')
-            const {id} = req.body
+            const {user_id} = req.body
             const db = require('../drivers/db.js')
-            var result = await db.transaction_get_custom(token, id)
+            var result = await db.transaction_get_custom(token, user_id)
             res.json(result)
         }else{
             res.json(0)
