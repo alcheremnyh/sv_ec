@@ -27,9 +27,9 @@ BEGIN
 	IF v_role = 1 or v_role < v_user_role THEN
 		UPDATE users.list
 			SET 
-				is_active = p_new)
+				is_active = p_new
 			WHERE id = p_user_id;
-        RETURN QUERY SELECT true;
+        RETURN QUERY SELECT is_active FROM users.list WHERE id = p_user_id;
     ELSE
         RAISE EXCEPTION 'not enough rights';
 	END IF;

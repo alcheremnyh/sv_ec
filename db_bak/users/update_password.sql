@@ -24,7 +24,7 @@ BEGIN
 		RAISE EXCEPTION 'password cannot be less than 6 characters';
 	END IF;
     
-	IF v_role = 1 or v_role < v_user_role THEN
+	IF v_role = 1 or v_role < v_user_role or v_admin_id=p_user_id THEN
 		UPDATE users.list
 			SET 
 				password = crypt(p_new, gen_salt('md5'))

@@ -93,4 +93,6 @@ select * from transactions.list;
 
 --select * from transactions.get_transactions_custom(12, '8becbbad27fd3ed055de5b2dc04068915c78b07f19b34e42ef64046db335fc63')
 
-select * from users.update_name(25,'Тестовый кассир 4','338515b8f97e0c479faeebea0480404df7063ade8b83cae8b327484cfcf4027f')
+--select * from users.update_name(25,'Тестовый кассир 4','338515b8f97e0c479faeebea0480404df7063ade8b83cae8b327484cfcf4027f')
+
+select * from users.status_set_active(25,false,'8becbbad27fd3ed055de5b2dc04068915c78b07f19b34e42ef64046db335fc63')
