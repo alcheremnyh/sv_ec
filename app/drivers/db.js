@@ -123,6 +123,33 @@ class PGP {
         return data
     }
 
+    async update_name(id, new_data,token){
+        let data = await this.db.any('select * from users.update_name($1, $2, $3);', [id, new_data, token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+    async update_password(id, new_data,token){
+        let data = await this.db.any('select * from users.update_password($1, $2, $3);', [id, new_data, token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+
     //////////////////////////////////////////////////////////////////////////
 
     async balance(user_id, token){

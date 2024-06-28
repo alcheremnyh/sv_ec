@@ -48,6 +48,34 @@ class UserController {
         }
     }
 
+    async update_name(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {id, new_data} = req.body
+            
+            const db = require('../drivers/db.js')
+            var result = await db.update_name(id, new_data, token)
+
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
+    async update_password(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {id, new_data} = req.body
+            
+            const db = require('../drivers/db.js')
+            var result = await db.update_password(id, new_data, token)
+
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
     async gen_password(req, res) {
         const {length} = req.query
         let result = '';
