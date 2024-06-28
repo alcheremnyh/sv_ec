@@ -124,7 +124,7 @@ class PGP {
     }
 
     async update_name(id, new_data,token){
-        let data = await this.db.any('select * from users.update_name($1, $2, $3);', [id, new_data, token])
+        let data = await this.db.one('select * from users.update_name($1, $2, $3);', [id, new_data, token])
             .then((data) => {
                 return data;
             })
@@ -137,7 +137,20 @@ class PGP {
     }
 
     async update_password(id, new_data,token){
-        let data = await this.db.any('select * from users.update_password($1, $2, $3);', [id, new_data, token])
+        let data = await this.db.one('select * from users.update_password($1, $2, $3);', [id, new_data, token])
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.log('ERROR:', error)
+                return {error: error.message}
+            })
+
+        return data
+    }
+
+    async status_set_active(id, new_data,token){
+        let data = await this.db.one('select * from users.status_set_active($1, $2, $3);', [id, new_data, token])
             .then((data) => {
                 return data;
             })

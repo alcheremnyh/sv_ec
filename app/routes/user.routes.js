@@ -12,6 +12,7 @@ router.post('/status-set', controller.status_set)
 router.get('/info', controller.info_get)
 router.post('/update-name', controller.update_name)
 router.post('/update-password', controller.update_password)
+router.post('/status-set-active', controller.status_set_active)
 
 
 router.post('/shift-start', controller.shift_start)

@@ -76,6 +76,20 @@ class UserController {
         }
     }
 
+    async status_set_active(req, res){
+        if(typeof req.headers.authorization !== "undefined"){
+            const token = req.headers.authorization.replace('Bearer ','')
+            const {id, new_data} = req.body
+            
+            const db = require('../drivers/db.js')
+            var result = await db.status_set_active(id, new_data, token)
+
+            res.json(result)
+        }else{
+            res.json(0)
+        }
+    }
+
     async gen_password(req, res) {
         const {length} = req.query
         let result = '';
