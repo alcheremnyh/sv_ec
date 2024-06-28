@@ -19,8 +19,12 @@ DECLARE
 BEGIN
     SELECT id, role FROM users.list WHERE token = p_token  AND is_active = true INTO v_admin_id, v_role;
 	SELECT role FROM users.list WHERE id = p_user_id INTO v_user_role;
-
-    IF v_role = 1 or v_role < v_user_role THEN
+	
+	IF(length(p_new)<6) THEN
+		RAISE EXCEPTION 'password cannot be less than 6 characters';
+	END IF;
+    
+	IF v_role = 1 or v_role < v_user_role THEN
 		UPDATE users.list
 			SET 
 				password = crypt(p_new, gen_salt('md5'))

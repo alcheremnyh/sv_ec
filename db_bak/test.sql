@@ -15,8 +15,6 @@
 
 --select * from users.register('admin_test1-1', 'passpass', 'Тестовый админ 2', 2, '679ae4f700fbd335bdbab8e54e9218681db0e25848461184ba21bf9897759154');
 
---delete from users.list where id>1;
-
 --select * from users.list WHERE name = 'admin_main' AND password = crypt('ip{^qey(H–qCTz0', password);
 
 
@@ -90,5 +88,9 @@ select * from transactions.list;
 
 --SELECT us.id FROM users.shifts us WHERE us.user_id = 12 AND us.complete=false
 
---select * from transactions.get_transaction('4ad86cbe6010ec54410772a761ddd3eb601b0265528c7054268b80604325df6d', 30);
-select * from transactions.cancel('4ad86cbe6010ec54410772a761ddd3eb601b0265528c7054268b80604325df6d', 30);
+--select * from transactions.get_transaction('87c9fb38e861ca229d53b30d222da3769632d6780fd0ba3c48d36e96cbfe7289', 30);
+--select * from transactions.cancel('4ad86cbe6010ec54410772a761ddd3eb601b0265528c7054268b80604325df6d', 30);
+
+--select * from transactions.get_transactions_custom(12, '8becbbad27fd3ed055de5b2dc04068915c78b07f19b34e42ef64046db335fc63')
+
+select * from users.update_name(25,'Тестовый кассир 4','338515b8f97e0c479faeebea0480404df7063ade8b83cae8b327484cfcf4027f')
