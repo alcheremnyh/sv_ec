@@ -12,7 +12,7 @@ router.post('/request-wd', controller.request_wd)
 router.post('/list-wd', controller.list_wd)
 router.post('/withdrawal', controller.withdrawal)
 router.get('/get', controller.get)
-router.post('/get_custom', controller.get_custom)
+router.post('/get-custom', controller.get_custom)
 router.post('/get-transaction', controller.get_transaction)
 router.post('/cancel', controller.cancel)
 

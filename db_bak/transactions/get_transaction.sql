@@ -26,7 +26,15 @@ BEGIN
 								JOIN users.list ul1 ON ul1.id = tl.user_id_to 
 			WHERE tl.id = p_id AND (tl.user_id_from = v_user_id OR tl.user_id_to = v_user_id) ORDER BY id DESC;
 	ELSE
-		RAISE EXCEPTION 'wrong role';
+		IF v_role < 5 THEN
+			RETURN QUERY SELECT tl.id, tl.user_id_from, ul.name, tl.user_id_to, ul1.name,
+							tl.operation_id, tl.cash, tl.created, tl.is_complete FROM transactions.list tl 
+									JOIN users.list ul ON ul.id = tl.user_id_from 
+									JOIN users.list ul1 ON ul1.id = tl.user_id_to 
+				WHERE tl.id = p_id  ORDER BY id DESC;
+		ELSE
+			RAISE EXCEPTION 'wrong role';
+		END IF;
 	END IF;
 END;
 $BODY$
